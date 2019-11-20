@@ -1,5 +1,0 @@
-# AngularForm
-
----
-permalink : /index.html
----
