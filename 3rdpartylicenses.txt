@@ -110,6 +110,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+@angular/material/autocomplete
+
 @angular/material/bottom-sheet
 
 @angular/material/button
@@ -130,9 +132,15 @@ THE SOFTWARE.
 
 @angular/material/select
 
+@angular/material/sidenav
+
 @angular/material/snack-bar
 
+@angular/material/toolbar
+
 @angular/material/tooltip
+
+@angular/material/tree
 
 @angular/platform-browser
 MIT
@@ -187,6 +195,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
+
+ngx-youtube-player
 
 rxjs
 Apache-2.0
