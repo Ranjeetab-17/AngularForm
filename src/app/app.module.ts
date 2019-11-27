@@ -47,16 +47,24 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { CommoncomponentComponent } from './commoncomponent/commoncomponent.component'
+import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
+import { RegisterformComponent } from './components/registerform/registerform.component';
+import { DynamiccontrolComponent } from './components/dynamiccontrol/dynamiccontrol.component';
+import { RelatedvideosComponent } from './components/relatedvideos/relatedvideos.component'
+import { CommoncontrolComponent } from './common/commoncontrol/commoncontrol.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CommoncomponentComponent
+    RegisterformComponent,
+    DynamiccontrolComponent,
+    CommoncontrolComponent,
+    RelatedvideosComponent
   ],
   imports: [
     BrowserAnimationsModule,
+    NgxYoutubePlayerModule.forRoot(),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

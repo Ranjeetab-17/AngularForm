@@ -1,0 +1,22 @@
+<mat-card *ngFor="let video of videos" style="margin-bottom: 10px;">
+    <div fxLayout="row wrap">
+        <div fxFlex="50" fxLayoutAlign="center center">
+            <youtube-player [videoId]="video.id" (ready)="savePlayer($event)" (change)="onStateChange($event)" [playerVars]="playerVars">
+            </youtube-player>
+        </div>
+        <div fxFlex="50">
+            <div fxLayout="row wrap">
+                <div fxFlex="100">
+                    <mat-card-title>{{video.title}}</mat-card-title>
+                </div>
+                <div fxFlex fxLayoutAlign="start center">
+                    <section class="mat-typography">
+                        {{video.description}}
+                    </section>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</mat-card>

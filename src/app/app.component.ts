@@ -1,6 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
+
+
+interface FoodNode {
+  name: string;
+  children?: FoodNode[];
+}
+
+const TREE_DATA: FoodNode[] = [
+  {
+    name: 'Forms',
+    children: [
+      {
+        name: 'Reactive Form',
+        children: [
+          { name: 'Form Array' },
+          { name: 'Dynamic control' },
+          { name: 'Control Value Accessor' },
+          { name: 'Patch Array' },
+        ]
+      },
+      { name: 'Template Form' },
+    ]
+  }
+];
+
+/** Flat node with expandable and level information */
+interface ExampleFlatNode {
+  expandable: boolean;
+  name: string;
+  level: number;
+}
 
 @Component({
   selector: 'app-root',
@@ -9,7 +42,26 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
+  private _transformer = (node: FoodNode, level: number) => {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      level: level,
+    };
+  }
+
+  treeControl = new FlatTreeControl<ExampleFlatNode>(
+    node => node.level, node => node.expandable);
+
+  treeFlattener = new MatTreeFlattener(
+    this._transformer, node => node.level, node => node.expandable, node => node.children);
+
+  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+
+
   title = 'ngClient';
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
 
   RegisterForm: FormGroup;
   dynamicform: FormGroup;
@@ -26,37 +78,15 @@ export class AppComponent implements OnInit {
   filteredResults$: Observable<string[]>;
 
   constructor(private _fb: FormBuilder) {
+    this.dataSource.data = TREE_DATA;
     this.searchControl = new FormControl('');
   }
-
+  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   ngOnInit(): void {
-    this.RegisterForm = this._fb.group({
-      FirstName: [null],
-      LastName: [null],
-      Salary: [null],
-      Gender: [null],
-      Company: [null],
-      Addresses: this._fb.array([
-        this.InititControl()
-      ])
-    });
 
-
-    this.dynamicform = this._fb.group({
-      genericdata: [null],
-      myArray: this._fb.array([
-        this.getControl(null, null)
-      ])
-    });
   }
 
-  getControl(label: string, data: Array<any>): FormGroup {
-    return this._fb.group({
-      label: label,
-      dynamicControl: [data]
-    })
-  }
 
   setDynamicControl(address: Array<any>): FormArray {
     const formarray = new FormArray([]);
@@ -68,43 +98,4 @@ export class AppComponent implements OnInit {
     return formarray;
   }
 
-  InititControl(): FormGroup {
-    return this._fb.group({
-      AddressType: [null],
-      Address: [null],
-      State: [null],
-      City: [null],
-      Pincode: [null]
-    })
-  }
-
-  Add_Addresses() {
-    const control = <FormArray>this.RegisterForm.controls['Addresses'];
-    control.push(this.InititControl());
-  }
-
-  GetData(type: string): Array<any> {
-    return type == 'State' ? this.States : this.Cities;
-  }
-
-  RemoveAddress(i: number) {
-    const control = <FormArray>this.RegisterForm.controls['Addresses'];
-    control.removeAt(i);
-  }
-
-  changeEvent(typeofdropdown: string) {
-    const genericFormArray = <FormArray>this.dynamicform.get('myArray');
-    if (typeofdropdown === 'state') {
-      genericFormArray.push(this.getControl(typeofdropdown, this.States));
-    } else if (typeofdropdown === 'city') {
-      genericFormArray.push(this.getControl(typeofdropdown, this.Cities));
-    } else {
-      genericFormArray.push(this.getControl(typeofdropdown, this.Countries));
-    }
-
-    const index: number = this.data.indexOf(typeofdropdown);
-    if (index !== -1) {
-      this.data.splice(index, 1);
-    }
-  }
 }
