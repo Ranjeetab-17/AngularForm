@@ -2,10 +2,10 @@
 
     <mat-sidenav #sidenav [mode]="'over'" position="start">
 
-        <mat-toolbar color="primary" style="height:250px;width:300px" align="center">
+        <mat-toolbar color="primary" style="height:250px;width:300px;background-image: url('assets/images/javascripttheme.jpg');background-size: cover;background-repeat: no-repeat;" align="center">
             <div fxLayout="row wrap">
                 <div fxFlex="100%" fxLayoutAlign="center center">
-                    <img mat-card-avatar #avtar [src]="'assets/images/825752_cad9_2.jpg'" style=" width: 160px !important;
+                    <img mat-card-avatar #avtar [src]="'assets/images/IMG_20190905_205837_671.jpg'" style=" width: 160px !important;
     height: 160px !important;
     border-radius: 100px !important;">
                 </div>
@@ -17,14 +17,46 @@
             </div>
         </mat-toolbar>
 
-        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-            <!-- This is the tree node template for leaf nodes -->
-            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-                <!-- use a disabled button to provide padding for tree leaf -->
+        <mat-nav-list color="warn">
+            <a mat-list-item [routerLink]='["registerform"]' (click)="sidenav.toggle()">
+                <mat-icon>library_books
+                </mat-icon>&nbsp;
+                <span>Register Form</span>
+            </a>
+
+            <a mat-list-item [routerLink]='["dynamiccontrol"]' (click)="sidenav.toggle()">
+                <mat-icon>library_books
+                </mat-icon>&nbsp;
+                <span>Dynamic Form</span>
+            </a>
+
+            <a mat-list-item [routerLink]='["editor"]' (click)="sidenav.toggle()">
+                <mat-icon>library_books
+                </mat-icon>&nbsp;
+                <span>Form Array</span>
+            </a>
+
+            <a mat-list-item [routerLink]='["editor"]' (click)="sidenav.toggle()">
+                <mat-icon>library_books
+                </mat-icon>&nbsp;
+                <span>Form Validation</span>
+            </a>
+
+            <a mat-list-item [routerLink]='["setting"]' (click)="sidenav.toggle()">
+                <mat-icon>settings</mat-icon>&nbsp;
+                <span>Settings</span>
+            </a>
+            <a mat-list-item [routerLink]='["../login"]'>
+                <mat-icon>power_settings_new</mat-icon>&nbsp;
+                <span>Logout</span>
+            </a>
+        </mat-nav-list>
+
+        <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">           
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>                
                 <button mat-icon-button disabled></button>
                 <button mat-button>{{node.name}}</button>
-            </mat-tree-node>
-            <!-- This is the tree node template for expandable nodes -->
+            </mat-tree-node>            
             <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
                 <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.name">
                         <mat-icon class="mat-icon-rtl-mirror">
@@ -33,11 +65,38 @@
                     </button>
                 <button mat-button>{{node.name}}</button>
             </mat-tree-node>
-        </mat-tree>
+        </mat-tree> -->
 
     </mat-sidenav>
 
-    <div fxLayout="row wrap">
+
+    <mat-toolbar color="primary" class="app-toolbar">
+        <button mat-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <button mat-button>
+            Gallary
+        </button>
+
+        <button mat-button>
+            Videos
+        </button>
+
+        <span class="example-spacer"></span>
+
+        <div fxFlex="10" fxLayoutAlign="end center">
+            <button mat-icon-button>
+                    <mat-icon matBadge="10" matBadgeColor="warn">notifications</mat-icon>
+                </button>
+        </div>
+
+        <div fxFlex="10" fxLayoutAlign="center center">
+            <img mat-card-avatar #avtar src="assets/images/825752_cad9_2.jpg" style="height: 40px;width: 40px;border-radius: 40px;">
+        </div>
+    </mat-toolbar>
+
+    <!-- <div fxLayout="row wrap">
         <div fxFlex="10" fxLayoutAlign="start center">
             <button mat-button (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
@@ -66,8 +125,8 @@
         <div fxFlex="10" fxLayoutAlign="center center">
             <img mat-card-avatar #avtar src="assets/images/825752_cad9_2.jpg" style="height: 40px;width: 40px;border-radius: 40px;">
         </div>
-    </div>
-    <img src="assets/images/ngconf.jpg" alt="" width="100%">
+    </div> -->
+
     <div fxLayout="row">
         <div fxFlex="20">
 
@@ -83,7 +142,13 @@
     </div>
 
 
-    <router-outlet style="background-color: antiquewhite "></router-outlet>
+    <router-outlet style="background-color: antiquewhite " (activate)="onActivate($event)"></router-outlet>
 
+    <div class="done" fxLayout="row" fxLayoutGap="15px" style="margin-top: 10px;margin-bottom: 10px;">
+
+        <a mat-mini-fab color="default" matTooltip="Preview" matTooltipPosition="before">
+            <mat-icon>code</mat-icon>
+        </a>
+    </div>
 
 </mat-sidenav-container>

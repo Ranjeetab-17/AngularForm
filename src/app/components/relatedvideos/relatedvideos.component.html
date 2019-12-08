@@ -1,5 +1,7 @@
+<img src="assets/images/ngconf.jpg" alt="" width="100%">
+
 <mat-card *ngFor="let video of videos" style="margin-bottom: 10px;">
-    <div fxLayout="row wrap">
+    <div fxLayout="row wrap" fxLayout.xs="column wrap">
         <div fxFlex="50" fxLayoutAlign="center center">
             <youtube-player [videoId]="video.id" (ready)="savePlayer($event)" (change)="onStateChange($event)" [playerVars]="playerVars">
             </youtube-player>

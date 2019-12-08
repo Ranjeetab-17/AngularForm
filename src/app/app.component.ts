@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, APP_ID } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
+import { isPlatformBrowser } from '@angular/common';
 
 
 interface FoodNode {
@@ -42,6 +43,20 @@ interface ExampleFlatNode {
 })
 export class AppComponent implements OnInit {
 
+  step = 0;
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
+
   private _transformer = (node: FoodNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -77,7 +92,8 @@ export class AppComponent implements OnInit {
 
   filteredResults$: Observable<string[]>;
 
-  constructor(private _fb: FormBuilder) {
+  constructor(private _fb: FormBuilder, @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(APP_ID) private appId: string) {
     this.dataSource.data = TREE_DATA;
     this.searchControl = new FormControl('');
   }
@@ -98,4 +114,16 @@ export class AppComponent implements OnInit {
     return formarray;
   }
 
+  onActivate(event: any) {
+    if (isPlatformBrowser(this.platformId)) {
+      let scrollToTop = window.setInterval(() => {
+        let pos = window.pageYOffset;
+        if (pos > 0) {
+          window.scrollTo(0, pos - 50); // how far to scroll on each step
+        } else {
+          window.clearInterval(scrollToTop);
+        }
+      }, 16);
+    }
+  }
 }
