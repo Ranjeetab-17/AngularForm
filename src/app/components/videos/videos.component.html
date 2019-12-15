@@ -1,0 +1,24 @@
+<div fxLayout="row wrap" fxLayout.xs="column">
+    <div fxFlex="33" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">
+        <mat-card class="zoom">
+            <div fxLayout="column">
+                <div fxFlex="60">
+                    <mat-video title="My Tutorial Title" [autoplay]="false" [preload]="false" [fullscreen]="true" [download]="false" [keyboard]="false" overlay="false" color="accent" spinner="spin" poster="https://udemy-images.udemy.com/course/750x422/404172_d3de.jpg">
+
+                        <source matVideoSource src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4">
+                        <source src="tutorial.webm" type="video/webm">
+                        <track matVideoTrack src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English">
+                        <track src="subtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian">
+                    </mat-video>
+                </div>
+                <div fxFlex="40">
+                    <star-rating value="3.5" totalstars="5" checkedcolor="yellow" uncheckedcolor="black" size="24px" readonly="false" (rate)="onRate($event)"></star-rating>
+                    <p>
+                        This Tour of Heroes tutorial provides an introduction to the fundamentals of Angular. It shows you how to set up your local development environment and develop an app using the Angular CLI tool. In this Tour of Heroes tutorial, you will build an app that
+                        helps a staffing agency manage its stable of heroes.
+                    </p>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>

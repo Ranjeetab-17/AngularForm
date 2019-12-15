@@ -4,6 +4,7 @@ import { RegisterformComponent } from './components/registerform/registerform.co
 import { DynamiccontrolComponent } from './components/dynamiccontrol/dynamiccontrol.component';
 import { RelatedvideosComponent } from './components/relatedvideos/relatedvideos.component';
 import { CommoncontrolComponent } from './common/commoncontrol/commoncontrol.component';
+import { VideosComponent } from './components/videos/videos.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,8 @@ const routes: Routes = [
   { path: 'dynamiccontrol', component: DynamiccontrolComponent },
   { path: 'commoncontrol', component: CommoncontrolComponent },
   { path: 'tutorials', component: RelatedvideosComponent },
+  { path: 'videos', component: VideosComponent },
+  { path: 'home', component: RelatedvideosComponent },
   { path: '**', redirectTo: '' }
 ];
 

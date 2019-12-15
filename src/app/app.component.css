@@ -29,3 +29,13 @@
  .example-spacer {
      flex: 1 1 auto;
  }
+ 
+ .search {
+     width: 250px;
+     height: 35px;
+     border-radius: 23px;
+ }
+ 
+ *:focus {
+     outline: none;
+ }

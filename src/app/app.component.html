@@ -75,17 +75,25 @@
             <mat-icon>menu</mat-icon>
         </button>
 
+        <button mat-button [routerLink]='["home"]'>
+            Home
+        </button>
+
         <button mat-button>
             Gallary
         </button>
 
-        <button mat-button>
+        <button mat-button [routerLink]='["videos"]'>
             Videos
         </button>
 
         <span class="example-spacer"></span>
 
-        <div fxFlex="10" fxLayoutAlign="end center">
+        <div fxFlex fxLayoutAlign="end center">
+            <input type="search" placeholder="search" class="search">
+        </div>
+
+        <div fxFlex="5" fxLayoutAlign="end center">
             <button mat-icon-button>
                     <mat-icon matBadge="10" matBadgeColor="warn">notifications</mat-icon>
                 </button>
@@ -135,9 +143,6 @@
             <!-- <router-outlet>
     
             </router-outlet> -->
-        </div>
-        <div fxFlex="20">
-
         </div>
     </div>
 

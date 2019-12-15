@@ -50,7 +50,9 @@ import { RegisterformComponent } from './components/registerform/registerform.co
 import { DynamiccontrolComponent } from './components/dynamiccontrol/dynamiccontrol.component';
 import { RelatedvideosComponent } from './components/relatedvideos/relatedvideos.component'
 import { CommoncontrolComponent } from './common/commoncontrol/commoncontrol.component';
-
+import { MatVideoModule } from 'mat-video';
+import { VideosComponent } from './components/videos/videos.component';
+import { RatingModule } from 'ng-starrating';
 
 @NgModule({
   declarations: [
@@ -58,12 +60,15 @@ import { CommoncontrolComponent } from './common/commoncontrol/commoncontrol.com
     RegisterformComponent,
     DynamiccontrolComponent,
     CommoncontrolComponent,
-    RelatedvideosComponent
+    RelatedvideosComponent,
+    VideosComponent
   ],
   imports: [
     BrowserAnimationsModule,
+    MatVideoModule,
     NgxYoutubePlayerModule.forRoot(),
     BrowserModule,
+    RatingModule,
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
